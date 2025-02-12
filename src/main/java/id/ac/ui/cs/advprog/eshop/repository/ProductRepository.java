@@ -37,6 +37,9 @@ public class ProductRepository {
         Product editedProduct = getProductById(productId);
         editedProduct.setProductName(newName);
         editedProduct.setProductQuantity(newQuantity);
+    }
 
+    public void delete(String productId) {
+        productData.remove(getProductById(productId));
     }
 }
