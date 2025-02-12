@@ -43,7 +43,7 @@ public class ProductController {
         return "editProduct";
     }
 
-    @PotMapping("/edit/{productId}")
+    @PostMapping("/edit/{productId}")
     public String editProduct(@PathVariable("productId") String productId, @ModelAttribute Product selectedProduct) {
         service.edit(productId, selectedProduct);
         return "redirect:../list";
