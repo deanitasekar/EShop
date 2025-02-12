@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <title>Product List</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        .btn-danger-custom {
+            background-color: red;
+            border-color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,6 +35,9 @@
                     <a th:href="@{'/product/edit/' + ${product.productId}}" class="ml-1 btn btn-primary btn-sm">
                         Edit
                     </a>
+                    <form th:action="@{'/product/delete/' + ${product.productId}}" th:method="post" class="ml-1">
+                        <button type="submit" class="btn btn-secondary btn-sm btn-danger-custom">Delete</button>
+                    </form>
                 </div>
             </td>
         </tr>
