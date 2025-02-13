@@ -30,13 +30,16 @@ public class ProductRepository {
         return selectedProduct;
     }
 
-    public void edit(String productId, Product selectedProduct) {
+    public Product edit(String productId, Product selectedProduct) {
         String newName = selectedProduct.getProductName();
         int newQuantity = selectedProduct.getProductQuantity();
 
         Product editedProduct = getProductById(productId);
-        editedProduct.setProductName(newName);
-        editedProduct.setProductQuantity(newQuantity);
+        if (editedProduct != null) {
+            editedProduct.setProductName(newName);
+            editedProduct.setProductQuantity(newQuantity);
+        }
+        return editedProduct;
     }
 
     public void delete(String productId) {
