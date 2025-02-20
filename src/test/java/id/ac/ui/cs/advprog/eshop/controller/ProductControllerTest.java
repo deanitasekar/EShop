@@ -42,7 +42,7 @@ public class ProductControllerTest {
     void testCreateProductPage() throws Exception {
         mockMvc.perform(get("/product/create"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("createProduct"))
+                .andExpect(view().name("CreateProduct"))
                 .andExpect(model().attributeExists("product"));
     }
 
@@ -58,7 +58,7 @@ public class ProductControllerTest {
         List<Product> productList = new ArrayList<>();
         when(service.findAll()).thenReturn(productList);
         mockMvc.perform(get("/product/list"))
-                .andExpect(view().name("productList"))
+                .andExpect(view().name("ProductList"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("products", productList));
     }
@@ -69,7 +69,7 @@ public class ProductControllerTest {
         String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
         when(service.getProductById(productId)).thenReturn(product);
         mockMvc.perform(get("/product/edit/{productId}", productId))
-                .andExpect(view().name("editProduct"))
+                .andExpect(view().name("EditProduct"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("product", product));
     }
