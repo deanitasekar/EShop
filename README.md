@@ -2,6 +2,8 @@
 ###### Deanita Sekar Kinasih
 ###### 2306229405
 
+### Tautan deployment: jittery-spoonbill-deanitasekar-109abb36.koyeb.app/ 
+
 <details>
 <summary><b>Module 1 - Coding Standards</b></summary>
 
@@ -42,4 +44,53 @@ Ketika membuat test functional test untuk memastikan jumlah item dalam daftar pr
   Kode setup yang terduplikasi menyebabkan perubahan pada infrastruktur test harus direplikasi di setiap class sehingga dapat menimbulkan kesalahan
 
 Untuk menjaga clean codes, sebaiknya menghindari duplikasi dengan ekstrasi logika, menggunakan parameterized test, dan mengelompokkan test. Dengan menerapkan ini, kode akan lebih mudah dibaca, lebih efisien, dan lebih mudah dilakukan maintenance. 
+</details>
+
+<details>
+<summary><b>Module 2 - CI/CD & DevOps</b></summary>
+  
+Tautan 
+**You have implemented a CI/CD process that automatically runs the test suites, analyzes code quality, and deploys to a PaaS. Try to answer the following questions in order to reflect on your attempt completing the tutorial and exercise.**
+
+**1. List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.**
+
+- Menghapus unnecessary modifier public
+
+Pada interface `ProductService`, semua method dideklarasikan dengan modifier public. Seharusnya, semua method dalam interface secara default bersifat public. Oleh karena itu, saya menghapus modifier tersebut agar tidak bersifat redundant.
+```java
+public interface ProductService {
+    Product create(Product product);
+    List<Product> findAll();
+    Product getProductById(String productId);
+    void edit(String productId, Product selectedProduct);
+    void delete(String productId);
+}
+```
+
+- Menghapus unnecessary semicolon
+  
+Pada ProductRepository, saya melakukan kesalahan dengan menuliskan dua semicolon dalam satu line. Untuk menjaga prinsip clean code, saya menghapus salah satu semicolon pada line tersebut.
+```java
+private List<Product> productData = new ArrayList<>();
+```
+
+- Mengganti unused import dengan spesific import
+  
+Pada HomeController dan ProductController, saya menggunakan `import org.springframework.web.bind.annotation.*` yang berpotensi menggunakan lebih banyak memori. Untuk menghindari itu, saya mengganti import tersebut dengan import yang lebih spesifik.
+```java
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+```
+```java
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+```
+
+2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
+
+Menurut saya, implementasi yang saya lakukan sudah memenuhi definisi Continuous Integration dan Continuous Deployment secara komprehensif. Dari segi CI, saya telah melakukan integrasi dengan berbagai workflow yaitu `ci.yml`, `scorecard.yml`, dan `pmd.yml`. Setiap kali terjadi perubahan kode, GitHub Actions secara otomatis menjalankan test untuk melakukan verifikasi fungsionalitas dan code quality. Dalam aspek CD, deployment menggunakan Koyeb memungkinakn setiap perubahan kode untuk diterapkan secara langsung tanpa intervensi manual. Apabila terjadi kesalahan, sistem akan memberikan umpan balik secara cepat sehingga kode dapat diperbaiki sebelum deployment. Dengan demikian, seluruh proses dari integrasi hingga deployment berjalan secara otomatis dan terstandardisasi, meningkatkan efisiensi pengembangan, meminimalkan bug, serta mengoptimalkan kode.
+
 </details>
