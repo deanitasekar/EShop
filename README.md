@@ -2,7 +2,7 @@
 ###### Deanita Sekar Kinasih
 ###### 2306229405
 
-### Tautan deployment: jittery-spoonbill-deanitasekar-109abb36.koyeb.app/ 
+#### Tautan deployment: https://jittery-spoonbill-deanitasekar-109abb36.koyeb.app/
 
 <details>
 <summary><b>Module 1 - Coding Standards</b></summary>
@@ -49,7 +49,6 @@ Untuk menjaga clean codes, sebaiknya menghindari duplikasi dengan ekstrasi logik
 <details>
 <summary><b>Module 2 - CI/CD & DevOps</b></summary>
   
-Tautan 
 **You have implemented a CI/CD process that automatically runs the test suites, analyzes code quality, and deploys to a PaaS. Try to answer the following questions in order to reflect on your attempt completing the tutorial and exercise.**
 
 **1. List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.**
