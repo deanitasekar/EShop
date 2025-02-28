@@ -88,8 +88,51 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 ```
 
-2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
+**2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!**
 
 Menurut saya, implementasi yang saya lakukan sudah memenuhi definisi Continuous Integration dan Continuous Deployment secara komprehensif. Dari segi CI, saya telah melakukan integrasi dengan berbagai workflow yaitu `ci.yml`, `scorecard.yml`, dan `pmd.yml`. Setiap kali terjadi perubahan kode, GitHub Actions secara otomatis menjalankan test untuk melakukan verifikasi fungsionalitas dan code quality. Dalam aspek CD, deployment menggunakan Koyeb memungkinakn setiap perubahan kode untuk diterapkan secara langsung tanpa intervensi manual. Apabila terjadi kesalahan, sistem akan memberikan umpan balik secara cepat sehingga kode dapat diperbaiki sebelum deployment. Dengan demikian, seluruh proses dari integrasi hingga deployment berjalan secara otomatis dan terstandardisasi, meningkatkan efisiensi pengembangan, meminimalkan bug, serta mengoptimalkan kode.
+
+</details>
+
+<details>
+<summary><b>Module 3 - Maintainability & OO Principles-v2</b></summary>
+  
+**1. Explain what principles you apply to your project!**
+
+- Single Responsibility Principle (SRP)
+
+  Setiap class berfokus pada satu tugas saja. Contohnya adalah memisahkan `CarController` dari `ProductController` karena terdapat perbedaan tugas. 
+
+- Open-Closed Principle (OCP)
+
+  Sebuah class harus bersifat open terhadap extension, tetapi closed terhadap modification. Contohnya adalah tidak secara langsung melakukan modifikasi terhadap objek Car pada method `update` di `CarRepository`
+
+- Liskov Substitution Principle (LSP)
+
+  Suatu subclass dapat menggantikan superclass tanpa memengaruhi efektivitas keselutuhan kode. Contohnya adalah `CarController` tidak seharusnya menjadi sublass `ProductController` karena `CarController` tidak bisa menggantikan `ProductController` akibat perbedaan fungsi dan sifat
+
+- Interface Segregation Principle (ISP)
+
+  Setiap class mengimplementasikan interface yang relevan dengan fungsi class tersebut. Contohnya adalah `ProductServiceImpl` mengimplementasikan `ProductService` serta `CarServiceImpl` mengimplementasikan `CarService`
+
+- Dependency Inversions Principle (DIP)
+
+  Class seharusnya bergantung pada Interface/Abstract Class, bukan pada Concrete Class. Contohnya dalam `CarController`, `carService` seharusnya mengimplementasikan Interface `CarService`, bukan `CarServiceImpl`
+
+**2. Explain the advantages of applying SOLID principles to your project with examples.**
+
+Dengan mengimplementasikan SOLID principle, kita dapat meningkatkan readability, maintainability, efficiency, dan flexibility project. Penerapan SOLID principle menghasilkan kode yang terstruktur dan modular sehingga developer dapat melakukan modifikasi dengan mudah di masa mendatang. 
+Contoh:
+- `CarController` tidak menangani logika bisnis, melainkan hanya menangani permintaan HTTP dan merender tampilan. Sedangkan, `CarServiceImpl` digunakan untuk menangani logika bisnis
+- `CarService` dapat dimodifikasi dengan penambahan fitur tanpa mengubah `CarServiceImpl` atau `CarController`
+- Penggunaan `CarService` Interface di `CarController` memudahkan pergantian `CarServiceImpl` dengan implementasi lain
+
+**3. Explain the disadvantages of not applying SOLID principles to your project with examples.**
+
+Tanpa penerapan SOLID principles, kode menjadi tidak fleksibel, fragile, dan stagnant. Rendahnya readability dapat memunculkan tantangan maintainability yang signifikan. Proses pengembangan akan menjadi lebih kompleks karena modifikasi pada satu bagian dapat menimbulkan efek pada bagian lain. Selain itu, proses testing juga menjadi lebih sulit sehingga memperlambat siklus pengembangan.
+Contoh
+- Tanpa penerapan SRP, `CarController` dan `CarService` harus diubah setiap dilakukan perubahan penyimpanan data
+- Tanpa penerapan ISP, `CarController` yang hanya membutuhkan `create` dan `findAll` terpaksa mengimplementasikan metode yang tidak diperlukan karena `CarService` memiliki metode create, update, delete, dan findAll. 
+- Tanpa penerapan DIP, akan terjadi kesulitan penggantian implementasi karena `CarController` langsung bergantung pada `CarServiceImpl` dan bukan `CarService` Interface
 
 </details>
