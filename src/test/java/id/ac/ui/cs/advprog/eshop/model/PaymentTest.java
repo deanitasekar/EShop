@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ class PaymentTest {
     @BeforeEach
     void setUp() {
         this.paymentData = new HashMap<>();
-        this.paymentData.put("voucherCode", "ESHOP1234ABC5678");
+        this.paymentData.put("VoucherCode", "ESHOP1234ABC5678");
 
         this.products = new ArrayList<>();
         Product product1 = new Product();
@@ -68,10 +69,39 @@ class PaymentTest {
     void testCreatePaymentDefaultValue() {
         Payment payment = new Payment("eb558e9f-1c39-460e-8860-54eb1396d79b", "VoucherCode", order, paymentData);
 
-        assertEquals("eb558e9f-1c39-460e-8860-54eb1396d79b" ,payment.getId());
+        assertEquals("eb558e9f-1c39-460e-8860-54eb1396d79b", payment.getId());
         assertEquals("VoucherCode", payment.getMethod());
         assertSame(order, payment.getOrder());
         assertSame(paymentData, payment.getPaymentData());
     }
 
+    @Test
+    void testCreatePaymentDefaultStatus() {
+        Payment payment = new Payment("eb558e9f-1c39-460e-8860-54eb1396d79b", "VoucherCode", order, this.paymentData);
+
+        assertEquals("eb558e9f-1c39-460e-8860-54eb1396d79b", payment.getId());
+        assertEquals("VoucherCode", payment.getMethod());
+        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
+        assertSame(this.paymentData, payment.getPaymentData());
+    }
+
+    @Test
+    void testCreatePaymentSuccessStatus() {
+        Payment payment = new Payment("eb558e9f-1c39-460e-8860-54eb1396d79b", "VoucherCode", order, this.paymentData, "SUCCESS");
+
+        assertEquals("eb558e9f-1c39-460e-8860-54eb1396d79b", payment.getId());
+        assertEquals("VoucherCode", payment.getMethod());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
+        assertSame(this.paymentData, payment.getPaymentData());
+    }
+
+    @Test
+    void testCreatePaymentPendingStatus() {
+        Payment payment = new Payment("eb558e9f-1c39-460e-8860-54eb1396d79b", "VoucherCode", order, this.paymentData, "PENDING");
+
+        assertEquals("eb558e9f-1c39-460e-8860-54eb1396d79b", payment.getId());
+        assertEquals("VoucherCode", payment.getMethod());
+        assertEquals(PaymentStatus.PENDING.getValue(), payment.getStatus());
+        assertSame(this.paymentData, payment.getPaymentData());
+    }
 }
