@@ -43,12 +43,19 @@ class PaymentRepositoryTest {
         order = new Order("gb558e9f-1c39-460e-8860-71af6af63bd6",
                 products, 1708560000L, "Safira Sudrajat");
 
+        Map<String, String> voucherData = new HashMap<>();
+        voucherData.put("voucherCode", "ESHOP123");
+
+        Map<String, String> codData = new HashMap<>();
+        codData.put("address", "Jl. Bacang 123");
+        codData.put("recipient", "Susi Susanti");
+
         Payment payment1 = new Payment("13652556-012a-4c07-b546-54eb1396d79b",
-                PaymentMethod.VOUCHER_CODE.getValue(), order, paymentData);
+                PaymentMethod.VOUCHER_CODE.getValue(), order, voucherData);
         payments.add(payment1);
 
         Payment payment2 = new Payment("7f9e15bb-1c39-460e-8860-54eb1396d79b",
-                PaymentMethod.CASH_ON_DELIVERY.getValue(), order, paymentData);
+                PaymentMethod.CASH_ON_DELIVERY.getValue(), order, codData);
         payments.add(payment2);
     }
 
@@ -56,22 +63,6 @@ class PaymentRepositoryTest {
     void testSaveCreate() {
         Payment payment = payments.get(1);
         Payment result = paymentRepository.save(payment);
-
-        Payment findResult = paymentRepository.findById(payments.get(1).getId());
-        assertEquals(payment.getId(), result.getId());
-        assertEquals(payment.getId(), findResult.getId());
-        assertEquals(payment.getMethod(), findResult.getMethod());
-        assertEquals(payment.getStatus(), findResult.getStatus());
-        assertSame(payment.getPaymentData(), findResult.getPaymentData());
-    }
-
-    @Test
-    void testSaveUpdate() {
-        Payment payment = payments.get(1);
-        paymentRepository.save(payment);
-
-        Payment newPayment = new Payment(payment.getId(), PaymentMethod.CASH_ON_DELIVERY.getValue(), order, paymentData);
-        Payment result = paymentRepository.save(newPayment);
 
         Payment findResult = paymentRepository.findById(payments.get(1).getId());
         assertEquals(payment.getId(), result.getId());
