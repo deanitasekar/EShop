@@ -16,8 +16,8 @@ public enum PaymentStatus {
 
     public static  boolean contains(String toCompare) {
         for (PaymentStatus paymentStatus : PaymentStatus.values()) {
-            if (paymentStatus.name().equals(toCompare))
-                return true;
+            if (paymentStatus.name().equals(toCompare)){
+                return true;}
         }
         return false;
     }
