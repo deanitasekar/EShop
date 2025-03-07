@@ -163,11 +163,11 @@ Menurut Percival (2017), terdapat 3 objektif utama dalam pengujian kode, yaitu:
 
 - Fast
   
-  Test memberikan feedback dengan cepat. Dari beberapa tes, misalnya PaymentTest, PaymentCashOnDeliveryTest, PaymentRepositoryTest, dapat terlihat bahwa tiap tes umumnya hanya memeriksa satu metode atau satu skenario. Tes ini tergolong singkat dan cepat dijalankan.
+  Test memberikan feedback dengan cepat. Dari beberapa tes, misalnya `PaymentTest`, `PaymentCashOnDeliveryTest`, `PaymentRepositoryTest`, dapat terlihat bahwa tiap tes umumnya hanya memeriksa satu metode atau satu skenario. Tes ini tergolong singkat dan cepat dijalankan.
 
 - Independent
   
-  Setiap test case hendaknya tidak saling mempengaruhi. Penggunaan @BeforeEach di masing-masing class test membuat hasil test tidak salah mempengaruhi karena setiap test case memiliki setup sendiri. 
+  Setiap test case hendaknya tidak saling mempengaruhi. Penggunaan `@BeforeEach` di masing-masing class test membuat hasil test tidak salah mempengaruhi karena setiap test case memiliki setup sendiri. 
 
 - Repeatable
   
