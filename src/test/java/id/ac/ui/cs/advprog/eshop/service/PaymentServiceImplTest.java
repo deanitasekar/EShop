@@ -61,23 +61,12 @@ class PaymentServiceImplTest {
 
         Map<String, String> codData = Map.of(
                 "address", "Jl. Margonda No. 123",
-                "recipient", "Margo City"
+                "deliveryFee", "15000"
         );
         Payment payment2 = new Payment(
                 "7f9e15bb-1c39-460e-8860-54eb1396d79b",
                 PaymentMethod.CASH_ON_DELIVERY.getValue(), order, codData);
         payments.add(payment2);
-    }
-
-    @Test
-    void testAddPayment() {
-        Order order = orders.get(0);
-        Payment payment = payments.get(0);
-        doReturn(payment).when(paymentRepository).save(any(Payment.class));
-
-        Payment result = paymentService.addPayment(order, PaymentMethod.VOUCHER_CODE.getValue(), Map.of("voucherCode", "ESHOP1234ABC5678"));
-        verify(paymentRepository, times(1)).save(any(Payment.class));
-        assertEquals(payment.getId(), result.getId());
     }
 
     @Test

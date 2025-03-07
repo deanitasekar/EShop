@@ -48,7 +48,7 @@ class PaymentRepositoryTest {
 
         Map<String, String> codData = new HashMap<>();
         codData.put("address", "Jl. Bacang 123");
-        codData.put("recipient", "Susi Susanti");
+        codData.put("deliveryFee", "101700");
 
         Payment payment1 = new Payment("13652556-012a-4c07-b546-54eb1396d79b",
                 PaymentMethod.VOUCHER_CODE.getValue(), order, voucherData);
@@ -96,7 +96,7 @@ class PaymentRepositoryTest {
     void testSaveAndCreateCashOnDelivery() {
         Map<String, String> codData = new HashMap<>();
         codData.put("address", "Jl. Beji No. 60");
-        codData.put("recipient", "Ice Juice");
+        codData.put("deliveryFee", "78800");
 
         Payment codPayment = new Payment(
                 "7f9e15bb-1c39-460e-8860-54eb1396d72d",

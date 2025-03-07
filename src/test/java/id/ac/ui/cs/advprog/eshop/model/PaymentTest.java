@@ -46,7 +46,7 @@ class PaymentTest {
 
     void loadCashOnDeliveryPaymentData() {
         this.paymentData.put("address", "Jl. Kabel No. 14");
-        paymentData.put("recipient", "Burhan");
+        paymentData.put("deliveryFee", "10000");
     }
 
     @Test
