@@ -136,3 +136,47 @@ Contoh
 - Tanpa penerapan DIP, akan terjadi kesulitan penggantian implementasi karena `CarController` langsung bergantung pada `CarServiceImpl` dan bukan `CarService` Interface
 
 </details>
+
+<details>
+<summary><b>Module 4 - Refactoring and TDD</b></summary>
+  
+You have followed the Test-Driven Development workflow in the Exercise. Now answer these questions:
+  
+**1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.**
+
+Menurut Percival (2017), terdapat 3 objektif utama dalam pengujian kode, yaitu:
+- Correctness
+  - Functional test yang telah diimplementasikan cukup memadai untuk memastikan fungsionalitas program sesuai ekspetasi awal.
+  - Test sudah mencakup kasus yang disebutkan dalam soal, tetapi masih terdapat kemungkinan edge case lain yang belum ter-handle.
+  - Functional Test membantu verifikasi integrasi komponen, tetapi Integration Test dapat dibuat untuk memastikan program berjalan dengan baik. 
+
+- Maintainability
+  - Test dapat membuat saya lebih percaya diri untuk melakukan refactor code tanpa perlu khawatir merusak fungsionalitas.
+  - Test mendukung pengembangan desain yang lebih baik dengan mempertibangkan berbagai perspektif pengguna. Keseimbangan antara Integration Test dan Unit Test penting karena keduanya memiliki tujuan berbeda.
+
+- Productive Workflow
+  - Test yang ada memungkinkan feedback cepat setelah perubahan kode, dengan peringatan jelas tentang bug dan lokasinya.
+  - Untuk meningkatkan kecepatan integration Test, dapat dilakukan optimasi setup/teardown, fokus pada skenario kritis, dan penggunaan stubbing tools. Dimungkinkan untuk menjalankan subset dari test suite dengan menandai tes-tes tertentu sebagai "penting".
+  - Test tidak membutuhkan waktu lama untuk memberikan feedback sehingga waktu tunggu untuk menjalankan test tidak menghambat produktivitas.
+ 
+**2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.**
+
+- Fast
+  
+  Test memberikan feedback dengan cepat. Dari beberapa tes, misalnya PaymentTest, PaymentCashOnDeliveryTest, PaymentRepositoryTest, dapat terlihat bahwa tiap tes umumnya hanya memeriksa satu metode atau satu skenario. Tes ini tergolong singkat dan cepat dijalankan.
+
+- Independent
+  
+  Setiap test case hendaknya tidak saling mempengaruhi. Penggunaan @BeforeEach di masing-masing class test membuat hasil test tidak salah mempengaruhi karena setiap test case memiliki setup sendiri. 
+
+- Repeatable
+  
+  Test menghasilkan output konsisten saat dijalankan berulang kali. Dapat dibuktikan bahwa tes mampu dijalankan berkali-kali dengan hasil konsisten di berbagai lingkungan. 
+
+- Self-Validating
+  
+  Test menggunakan assertion yang tepat untuk hasil pass/fail. Test ini secara langsung memberikan kesimpulan “lulus” atau “gagal” tanpa harus dicek manual.
+
+- Timely
+  Test dibuat sebelum implementasi sesuai TDD. Jika kode sudah selesai jauh sebelum tes dibuat, mungkin unsur “timely” kurang terpenuhi. 
+</details>
