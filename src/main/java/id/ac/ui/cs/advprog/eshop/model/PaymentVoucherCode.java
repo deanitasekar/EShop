@@ -10,7 +10,6 @@ public class PaymentVoucherCode extends Payment {
     }
 
     public PaymentVoucherCode(String id, Order order, Map<String, String> paymentData, String status) {
-        super(id, PaymentMethod.VOUCHER_CODE.getValue(), order, paymentData, status
-        );
+        super(id, PaymentMethod.VOUCHER_CODE.getValue(), order, paymentData, status);
     }
 }

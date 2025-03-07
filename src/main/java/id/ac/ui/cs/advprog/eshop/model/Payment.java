@@ -4,9 +4,7 @@ import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 
 import lombok.Getter;
-import lombok.Setter;
 
-import java.util.Arrays;
 import java.util.Map;
 
 @Getter
